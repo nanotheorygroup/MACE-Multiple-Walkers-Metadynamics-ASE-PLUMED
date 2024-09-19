@@ -3,3 +3,17 @@ ref1:
   type: internal
 
 ref2: 
+  location: 21/002
+  type: internal
+
+ref3:
+  location: 21/004
+  type: internal
+
+ref4:
+  location: https://pubs.acs.org/doi/10.1021/jp054359r
+  type: external
+
+ref5:
+  location: https://github.com/ilyes319/mace-tutorials-csc/tree/main
+  type: external
