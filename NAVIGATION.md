@@ -7,20 +7,22 @@ This tutorial uses Atomic Simulation Environment (ASE) to perform multiple walke
 Depending on your previous exposure and interest in the topics, you may want to look at the lessons on PLUMED syntax, metadynamics, and external tutorials on training a MACE potential by its developer group.
 
 ```mermaid
-flowchart LR
-A[PLUMED Syntax] ==> B[Metadynamics Tutorial]
-B ==> C[Multiple Walkers Metadynamics]
-C ==> D[Instructions]
-E[MACE Tutorials] ==> D
-D ==> F[Input Files]
-F ==> G[Post-processing]
-G ==> H[Solution]
+flowchart TD
+A[PLUMED Syntax] ==> B[Statistical Errors in MD]
+B ==> C[Metadynamics]
+C ==> D[Multiple Walkers Metadynamics]
+D ==> F[Instructions]
+E[MACE Tutorials] ==> F
+F ==> G[Input Files]
+G ==> H[Post-processing]
+H ==> I[Solution]
 click A "ref1" "This is a PLUMED masterclass tutorial introducing PLUMED syntax and enhanced sampling"
-click B "ref2" "This is a PLUMED masterclass tutorial performing metadynamics simulations with PLUMED"
-click C "ref3" "The original paper introducing multiple walkers metadynamics"
-click D "ref4" "The instructions of this tutorial exercise"
+click B "ref2" "This is a PLUMED masterclass tutorial on how to handle the statistical errors in MD simulations"
+click C "ref3" "This is a PLUMED masterclass tutorial performing metadynamics simulations with PLUMED"
+click D "ref4" "The original paper introducing multiple walkers metadynamics"
 click E "ref5" "External tutorials on training on a MACE potential by its developer group"
-click F "ref6" "Examples of the input files"
-click G "ref7" "The post-processing and reweighting of the simulations"
-click H "ref8" "The notebook file with the suggested solution"
+click F "README.md" "The instructions of this tutorial exercise"
+click G "INPUTS.md" "Examples of the input files"
+click H "POST_PROCESSING.md" "The post-processing and reweighting of the simulations"
+click I "solution.ipynb" "The notebook file with the suggested solution"
 ```
