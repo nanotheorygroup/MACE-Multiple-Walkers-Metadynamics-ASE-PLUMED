@@ -9,4 +9,18 @@ Depending on your previous exposure and interest in the topics, you may want to 
 ```mermaid
 flowchart LR
 A[PLUMED Syntax] ==> B[Metadynamics Tutorial]
+B ==> C[Multiple Walkers Metadynamics]
+C ==> D[Instructions]
+E[MACE Tutorials] ==> D
+D ==> F[Input Files]
+F ==> G[Post-processing]
+G ==> H[Solution]
+click A "ref1" "This is a PLUMED masterclass tutorial introducing PLUMED syntax and enhanced sampling"
+click B "ref2" "This is a PLUMED masterclass tutorial performing metadynamics simulations with PLUMED"
+click C "ref3" "The original paper introducing multiple walkers metadynamics"
+click D "ref4" "The instructions of this tutorial exercise"
+click E "ref5" "External tutorials on training on a MACE potential by its developer group"
+click F "ref6" "Examples of the input files"
+click G "ref7" "The post-processing and reweighting of the simulations"
+click H "ref8" "The notebook file with the suggested solution"
 ```
