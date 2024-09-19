@@ -6,7 +6,7 @@ This tutorial uses Atomic Simulation Environment (ASE) to perform multiple walke
 
 Depending on your previous exposure and interest in the topics, you may want to look at the lessons on PLUMED syntax, metadynamics, and external tutorials on training a MACE potential by its developer group.
 
-'''mermaid
+```mermaid
 flowchart LR
 A[PLUMED Syntax] ==> B[Metadynamics Tutorial]
-'''
+```
