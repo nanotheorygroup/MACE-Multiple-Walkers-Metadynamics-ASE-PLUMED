@@ -2,7 +2,7 @@
 
 ## ASE Input File
 
-This tutorial uses ASE as the MD engine. Before you install ASE, you will need to ensure that your [PLUMED is installed with Python wrappers] (https://www.plumed.org/doc-v2.9/user-doc/html/_installation.html#installingpython).
+This tutorial uses ASE as the MD engine. Before you install ASE, you will need to ensure that your PLUMED is installed with Python wrappers (https://www.plumed.org/doc-v2.9/user-doc/html/_installation.html#installingpython).
 
 To install the development version of ASE, which includes all the latest features, you can run the following commands:
 ```
