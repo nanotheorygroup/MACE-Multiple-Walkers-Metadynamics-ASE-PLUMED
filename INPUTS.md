@@ -39,21 +39,7 @@ atoms.set_cell(cell)
 atoms.set_pbc([True, True, True])  # Set PBC along x, y, z
 
 # Set up the PLUMED actions
-setup = [f"UNITS LENGTH=nm TIME=ps ENERGY=kj/mol",
-         "hw: GROUP ATOMS=1,2,5,6,7,9,11,13,15,16,18,19,21,23,25,26,27,29,30,31,33,34,35,36,39,40,43,45,46,47,48,51,52,54,55,57,58,59,61,62,63,65,66,67,68,71,72,73,75,76,78,79,80,81,82,84,85,89,90,91,92,95,96,98,99,100,102,105,106,107,109,110,112,113,115,116,117,119,120,121,122,123,124,126,129,130,132,134,135,136,137,138,140,142,143,144,147,149,151,152,153,155,156,157,158,159,160,161,162,166,167,170,171,173,175,176,177,179,181,182,183,184,186,187,188,189",
-         "ow: GROUP ATOMS=1-189 REMOVE=hw",
-         "o_no2: GROUP ATOMS=190,191",
-         "cv1: DISTANCE ATOMS=192,193",
-         "cv2: HBOND_MATRIX ACCEPTORS=o_no2 HYDROGENS=hw DONORS=ow SWITCH={RATIONAL R_0=0.345 NN=8 MM=16} HSWITCH={RATIONAL R_0=0.115 NN=12 MM=24} ASWITCH={RATIONAL R_0=0.167pi NN=6 MM=12} SUM",
-         "no1: DISTANCE ATOMS=192,190",
-         "no2: DISTANCE ATOMS=192,191",
-         "uwallcv1: UPPER_WALLS ARG=cv1 AT=0.40 KAPPA=10000.0",
-         "uwall1: UPPER_WALLS ARG=no1 AT=0.15 KAPPA=10000.0",
-         "uwall2: UPPER_WALLS ARG=no2 AT=0.15 KAPPA=10000.0",
-         "uwallcv2: UPPER_WALLS ARG=cv2.sum AT=5.0 KAPPA=10000.0",
-         "metad: METAD ARG=cv1,cv2.sum SIGMA=0.01,0.05 HEIGHT=5.0 PACE=100 TEMP=300.0 BIASFACTOR=15 GRID_MIN=0.00,0.00 GRID_MAX=0.5,6.0 CALC_RCT RCT_USTRIDE=10 WALKERS_N=NUMBER_OF_WALKERS WALKERS_ID=ID_NUMBER_OF_THE_WALKER WALKERS_DIR=./path/to/your/hills/files/ WALKERS_RSTRIDE=FREQUENCY_OF_READING_THE_HILLS_FILES",
-         "PRINT ARG=cv1,uwallcv1.bias,cv2.sum,no1,uwall1.bias,no2,uwall2.bias,metad.bias,metad.rbias STRIDE=10 FILE=COLVAR",
-         "FLUSH STRIDE=100"]
+setup = [f"PLUMED INPUT SECTION"]
 
 # Set up the CSVR thermostat for the NVT ensemble
 temperature_K = 300
@@ -77,3 +63,36 @@ dyn.run(nsteps)
 # Export the last frame in extxyz format for restarting the simulation
 write("mace_metad_restart.xyz", atoms, format='extxyz')
 ```
+
+## PLUMED Input Section
+
+As shown above, the PLUMED actions can be inputted explicitly in the Python script for the ASE input:
+```plumed
+# Solution file of the first walker = solution/walker-0/MACE_MD_MetaD.py
+ 
+# Default units in PLUMED
+UNITS LENGTH=nm TIME=ps ENERGY=kj/mol
+
+# Define the CVs and PLUMED actions
+hw: GROUP ATOMS=1,2,5,6,7,9,11,13,15,16,18,19,21,23,25,26,27,29,30,31,33,34,35,36,39,40,43,45,46,47,48,51,52,54,55,57,58,59,61,62,63,65,66,67,68,71,72,73,75,76,78,79,80,81,82,84,85,89,90,91,92,95,96,98,99,100,102,105,106,107,109,110,112,113,115,116,117,119,120,121,122,123,124,126,129,130,132,134,135,136,137,138,140,142,143,144,147,149,151,152,153,155,156,157,158,159,160,161,162,166,167,170,171,173,175,176,177,179,181,182,183,184,186,187,188,189
+ow: GROUP ATOMS=1-189 REMOVE=hw
+o_no2: GROUP ATOMS=190,191
+cv1: DISTANCE ATOMS=192,193
+cv2: HBOND_MATRIX ACCEPTORS=o_no2 HYDROGENS=hw DONORS=ow SWITCH={RATIONAL R_0=0.345 NN=8 MM=16} HSWITCH={RATIONAL R_0=0.115 NN=12 MM=24} ASWITCH={RATIONAL R_0=0.167pi NN=6 MM=12} SUM
+no1: DISTANCE ATOMS=192,190
+no2: DISTANCE ATOMS=192,191
+
+# Apply walls to restrict the exploration of the CVs if necessary
+uwallcv1: UPPER_WALLS ARG=cv1 AT=0.40 KAPPA=10000.0
+uwall1: UPPER_WALLS ARG=no1 AT=0.15 KAPPA=10000.0
+uwall2: UPPER_WALLS ARG=no2 AT=0.15 KAPPA=10000.0
+uwallcv2: UPPER_WALLS ARG=cv2.sum AT=5.0 KAPPA=10000.0
+
+# Setup of the multiple walkers metadynamics simulations
+metad: METAD ARG=cv1,cv2.sum SIGMA=0.01,0.05 HEIGHT=5.0 PACE=100 TEMP=300.0 BIASFACTOR=15 GRID_MIN=0.00,0.00 GRID_MAX=0.5,6.0 CALC_RCT RCT_USTRIDE=10 WALKERS_N=__FILL__ WALKERS_ID=__FILL__ WALKERS_DIR=__FILL__ WALKERS_RSTRIDE=__FILL__
+
+# Print out the CVs and biases on the fly
+PRINT ARG=cv1,uwallcv1.bias,cv2.sum,no1,uwall1.bias,no2,uwall2.bias,metad.bias,metad.rbias STRIDE=10 FILE=COLVAR
+FLUSH STRIDE=100
+```
+To set up a metadynamics simulation with multiple walkers, you need to specify the number of walkers by WALKERS_N, the walker index by WALKERS_ID (which starts from 0), the directory which stores the bias potentials by WALKERS_DIR, and the frequency of the walkers reading the bias potential files by WALKERS_RSTRIDE.
