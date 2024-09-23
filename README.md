@@ -18,3 +18,6 @@ The following is the workflow to run multiple walkers metadynamics simulation wi
    - Monitor the simulations of all the walkers to ensure that all the metastable states and transitions of interest are being explored.
   
 4. Analyze the Results and Post-Processing:
+   - Use PLUMED tools to analyze the CVs and the bias potentials.
+   - Generate the free energy surface by summing up all the bias potentials or reweighing the biases applied.
+   - Check the convergence of the results.
