@@ -75,5 +75,5 @@ nsteps = 1000000  # Number of MD steps
 dyn.run(nsteps)
 
 # Export the last frame in extxyz format for restarting the simulation
-write("mace_walker_0_restart.xyz", atoms, format='extxyz')
+write("mace_metad_restart.xyz", atoms, format='extxyz')
 ```
