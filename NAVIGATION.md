@@ -23,6 +23,6 @@ click D "ref4" "The original paper introducing multiple walkers metadynamics"
 click E "ref5" "External tutorials on training on a MACE potential by its developer group"
 click F "README.md" "The instructions of this tutorial exercise"
 click G "INPUTS.md" "Examples of the input files"
-click H "POST_PROCESSING.md" "The post-processing and reweighting of the simulations"
+click H "POST_PROCESSING.md" "The post-processing and reweighing of the simulations"
 click I "solution.ipynb" "The notebook file with the suggested solution"
 ```
