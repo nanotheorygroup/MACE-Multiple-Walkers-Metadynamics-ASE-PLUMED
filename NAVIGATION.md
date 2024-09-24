@@ -13,16 +13,16 @@ B ==> C[Metadynamics]
 C ==> D[Multiple Walkers Metadynamics]
 D ==> F[Instructions]
 E[MACE Tutorials] ==> F
-F ==> G[Input Files]
-G ==> H[Post-processing]
-H ==> I[Solution]
+F ==> G[Model System]
+G ==> H[Input Files]
+H ==> I[Post-processing]
 click A "ref1" "This is a PLUMED masterclass tutorial introducing PLUMED syntax and enhanced sampling"
 click B "ref2" "This is a PLUMED masterclass tutorial on how to handle the statistical errors in MD simulations"
 click C "ref3" "This is a PLUMED masterclass tutorial performing metadynamics simulations with PLUMED"
 click D "ref4" "The original paper introducing multiple walkers metadynamics"
 click E "ref5" "External tutorials on training on a MACE potential by its developer group"
 click F "README.md" "The instructions of this tutorial exercise"
-click G "INPUTS.md" "Examples of the input files"
-click H "POST_PROCESSING.md" "The post-processing and reweighing of the simulations"
-click I "solution.ipynb" "The notebook file with the suggested solution"
+click G "MODEL_SYSTEM.md" "An introduction to the model system of this tutorial"
+click H "INPUTS.md" "Examples of the input files"
+click I "POST_PROCESSING.md" "The post-processing and reweighing of the simulations"
 ```
