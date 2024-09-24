@@ -71,8 +71,6 @@ write("mace_metad_restart.xyz", atoms, format='extxyz')
 
 As shown above, the PLUMED actions can be inputted explicitly in the Python script for the ASE input:
 ```plumed
-# Solution file of the first walker = ./solution/walker-0/MACE_MD_MetaD.py
- 
 # Default units in PLUMED
 UNITS LENGTH=nm TIME=ps ENERGY=kj/mol
 
