@@ -39,7 +39,10 @@ atoms.set_cell(cell)
 atoms.set_pbc([True, True, True])  # Set PBC along x, y, z
 
 # Set up the PLUMED actions
-setup = [f"PLUMED INPUT SECTION"]
+# The PLUMED actions in a plumed.dat file can be inputted explicitly into this Python script. More details are described below.
+setup = [f"# Default units in PLUMED",
+          "UNITS LENGTH=nm TIME=ps ENERGY=kj/mol",
+          "..."]
 
 # Set up the CSVR thermostat for the NVT ensemble
 temperature_K = 300
@@ -57,7 +60,7 @@ dyn.attach(traj.write, interval=10)
 dyn.attach(MDLogger(dyn, atoms, 'md_mace_metad.log', header=True, stress=False), interval=10)
 
 # Run the MD simulation
-nsteps = 1000000  # Number of MD steps
+nsteps = 500000  # Number of MD steps
 dyn.run(nsteps)
 
 # Export the last frame in extxyz format for restarting the simulation
@@ -76,9 +79,8 @@ UNITS LENGTH=nm TIME=ps ENERGY=kj/mol
 # Define the CVs and PLUMED actions
 hw: GROUP ATOMS=1,2,5,6,7,9,11,13,15,16,18,19,21,23,25,26,27,29,30,31,33,34,35,36,39,40,43,45,46,47,48,51,52,54,55,57,58,59,61,62,63,65,66,67,68,71,72,73,75,76,78,79,80,81,82,84,85,89,90,91,92,95,96,98,99,100,102,105,106,107,109,110,112,113,115,116,117,119,120,121,122,123,124,126,129,130,132,134,135,136,137,138,140,142,143,144,147,149,151,152,153,155,156,157,158,159,160,161,162,166,167,170,171,173,175,176,177,179,181,182,183,184,186,187,188,189
 ow: GROUP ATOMS=1-189 REMOVE=hw
-o_no2: GROUP ATOMS=190,191
 cv1: DISTANCE ATOMS=192,193
-cv2: HBOND_MATRIX ACCEPTORS=o_no2 HYDROGENS=hw DONORS=ow SWITCH={RATIONAL R_0=0.345 NN=8 MM=16} HSWITCH={RATIONAL R_0=0.115 NN=12 MM=24} ASWITCH={RATIONAL R_0=0.167pi NN=6 MM=12} SUM
+cv2: HBOND_MATRIX ACCEPTORS=193 HYDROGENS=hw DONORS=ow SWITCH={RATIONAL R_0=0.345 NN=8 MM=16} HSWITCH={RATIONAL R_0=0.115 NN=12 MM=24} ASWITCH={RATIONAL R_0=0.167pi NN=6 MM=12} SUM
 no1: DISTANCE ATOMS=192,190
 no2: DISTANCE ATOMS=192,191
 
