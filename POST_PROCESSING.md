@@ -75,3 +75,17 @@ with open('fes-ferr-block-average.dat', 'w') as fout:
         fout.write("%f  %f  %f  %f\n" % (hist0[:,0][i]*10, hist0[:,1][i], fes[i], ferr[I]))
 ```
 
+Sometimes, you may want to reweigh the simulation on a different CV, which is not biased through the metadynamics simulation. In this case, you just need to modify the `plumed_reweight.dat` file to inform PLUMED tools to read a different CV column from the COLVAR file:
+```plumed
+# Read the COLVAR file
+cv1: READ FILE=COLVAR IGNORE_TIME VALUES=cv1
+cv2: READ FILE=COLVAR IGNORE_TIME VALUES=__FILL__
+metad: READ FILE=COLVAR IGNORE_TIME VALUES=metad.rbias
+
+# Define weights
+weights: REWEIGHT_METAD TEMP=300
+
+# Calculate histograms
+hh: HISTOGRAM ARG=cv1,cv2 GRID_MIN=0.1,__FILL__ GRID_MAX=0.4,__FILL__ GRID_BIN=255,255 BANDWIDTH=0.01,__FILL__ LOGWEIGHTS=weights NORMALIZATION=true CLEAR=__FILL__
+DUMPGRID GRID=hh FILE=histogram.dat STRIDE=__FILL__
+```
