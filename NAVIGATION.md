@@ -16,13 +16,13 @@ E[MACE Tutorials] ==> F
 F ==> G[Model System]
 G ==> H[Input Files]
 H ==> I[Post-processing]
-click A "ref1" "This is a PLUMED masterclass tutorial introducing PLUMED syntax and enhanced sampling"
-click B "ref2" "This is a PLUMED masterclass tutorial on how to handle the statistical errors in MD simulations"
-click C "ref3" "This is a PLUMED masterclass tutorial performing metadynamics simulations with PLUMED"
-click D "ref4" "The original paper introducing multiple walkers metadynamics"
-click E "ref5" "External tutorials on training on a MACE potential by its developer group"
-click F "README.md" "The instructions of this tutorial exercise"
-click G "MODEL_SYSTEM.md" "An introduction to the model system of this tutorial"
-click H "INPUTS.md" "Examples of the input files"
-click I "POST_PROCESSING.md" "The post-processing and reweighing of the simulations"
+click A "https://www.plumed-tutorials.org/lessons/21/001/data/NAVIGATION.html" "This is a PLUMED masterclass tutorial introducing PLUMED syntax and enhanced sampling"
+click B "https://www.plumed-tutorials.org/lessons/21/002/data/NAVIGATION.html" "This is a PLUMED masterclass tutorial on how to handle the statistical errors in MD simulations"
+click C "https://www.plumed-tutorials.org/lessons/21/004/data/NAVIGATION.html" "This is a PLUMED masterclass tutorial performing metadynamics simulations with PLUMED"
+click D "https://pubs.acs.org/doi/full/10.1021/jp054359r" "The original paper introducing multiple walkers metadynamics"
+click E "https://github.com/ilyes319/mace-tutorials-csc/tree/main" "External tutorials on training on a MACE potential by its developer group"
+click F "https://github.com/nanotheorygroup/MACE-Multiple-Walkers-Metadynamics-ASE-PLUMED/blob/main/README.md" "The instructions of this tutorial exercise"
+click G "https://github.com/nanotheorygroup/MACE-Multiple-Walkers-Metadynamics-ASE-PLUMED/blob/main/MODEL_SYSTEM.md" "An introduction to the model system of this tutorial"
+click H "https://github.com/nanotheorygroup/MACE-Multiple-Walkers-Metadynamics-ASE-PLUMED/blob/main/INPUTS.md" "Examples of the input files"
+click I "https://github.com/nanotheorygroup/MACE-Multiple-Walkers-Metadynamics-ASE-PLUMED/blob/main/POST_PROCESSING.md" "The post-processing and reweighing of the simulations"
 ```
